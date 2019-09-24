@@ -30,10 +30,10 @@ class ChamferDistanceFunction(torch.autograd.Function):
 
         ctx.save_for_backward(xyz1, xyz2, idx1, idx2)
 
-        return dist1, dist2
+        return dist1, dist2, idx1, idx2
 
     @staticmethod
-    def backward(ctx, graddist1, graddist2):
+    def backward(ctx, graddist1, graddist2, _idx1, _idx2):
         xyz1, xyz2, idx1, idx2 = ctx.saved_tensors
 
         graddist1 = graddist1.contiguous()
